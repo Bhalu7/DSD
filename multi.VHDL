@@ -1,6 +1,7 @@
 LIBRARY ieee;
 USE ieee.std_logic_1164.ALL;
 USE ieee.std_logic_unsigned.ALL;
+
 ENTITY multi IS
 PORT(
 		sub: IN STD_LOGIC;
@@ -12,10 +13,14 @@ PORT(
 		top : OUT STD_LOGIC_VECtoR(8 DOWNTO 1);
 		bottom : OUT STD_LOGIC_VECtoR(8 DOWNTO 1);
 		answer : OUT STD_LOGIC_VECtoR(8 DOWNTO 1));
+
 END multi;
+
 architecture multiAdder of multi is
+
 		SIGNAL c_pass : STD_LOGIC;
 		SIGNAL cfinal : STD_LOGIC;
+		
 COMPONENT bcd_add
 PORT(
 		sub : IN STD_LOGIC;
@@ -49,10 +54,12 @@ BEGIN
 	ELSE
 		minus <= '0';
 	END IF;
+	
+	
+	
 END PROCESS;
 top <= c&"0000" + a;
 bottom <= d&"0000"+ b;
 answer <= sumL & "0000"+ sumR;
+
 end multiAdder;
-
-

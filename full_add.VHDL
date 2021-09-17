@@ -10,4 +10,3 @@ BEGIN
 c_out <= ((a xor b) and c_in) or (a and b);
 sum <= (a xor b) xor c_in;
 END adder; 
-

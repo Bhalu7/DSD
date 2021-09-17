@@ -8,7 +8,9 @@ a,b : IN STD_LOGIC_VECTOR (4 downto 1);
 c4 : OUT STD_LOGIC;
 sum : OUT STD_LOGIC_VECTOR (4 downto 1));
 END addsub4g; 
+
 ARCHITECTURE adder OF addsub4g IS
+
 COMPONENT full_add
 PORT(
 a, b, c_in : IN STD_LOGIC;
@@ -19,9 +21,11 @@ END COMPONENT;
 	SIGNAL b_comp : STD_LOGIC_VECTOR (4 downto 1);
 	SIGNAL a_comp : STD_LOGIC_VECTOR (4 downto 1);
 	SIGNAL comp : STD_LOGIC_VECTOR(4 downto 1);
+
 	BEGIN
 addsub <=  sub ;
 c(0) <= sub XOR c_in;
+
 PROCESS(a,b)
 BEGIN
 IF (sub <= '1') then
@@ -33,11 +37,17 @@ IF (sub <= '1') then
 	a_comp <= a;
 	b_comp <= b;
 	end if;
+
 END IF;
 END PROCESS;
+
 adders:
 FOR i IN 1 to 4 GENERATE
+--invert b for subtract function (b(i) xor 1,)
+--do not invert b for add function (b(i) xor 0)
+
 comp(i) <= (b_comp(i) xor addsub);
+
 adder: full_add PORT MAP (a_comp(i), comp(i), c(i -1), c(i), sum (i));
 END GENERATE;
 C4 <= c(4);

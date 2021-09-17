@@ -1,8 +1,10 @@
 LIBRARY ieee;
 USE ieee.std_logic_1164.all;
 USE ieee.std_logic_unsigned.ALL;
+
 ENTITY testbench IS 
 END testbench;
+
 ARCHITECTURE Behaviour OF testbench IS
 COMPONENT multi
 	PORT(
@@ -31,6 +33,7 @@ COMPONENT multi
 	SIGNAL  answer : STD_LOGIC_VECtoR(8 DOWNTO 1);
 BEGIN
 U1 : multi PORT MAP(sub, c0, a, b, c, d, c4, minus, sumR, sumL, top, bottom, answer);
+
 vectors : PROCESS
 BEGIN
 	a<= "0111"; b <="0011"; c<="0101"; d<="0010"; sub<='1'; c0 <= '0';
@@ -47,6 +50,7 @@ BEGIN
 	WAIT FOR 20 ns;
 	a<= "0000"; b <="1001"; c<="0000"; d<="1001"; sub<='1';c0 <= '0';
 	WAIT;
+
 END PROCESS;
 END;
 	

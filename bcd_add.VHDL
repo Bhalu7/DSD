@@ -16,6 +16,7 @@ SIGNAL c4_bcd : STD_LOGIC;
 SIGNAL sum_bin : STD_LOGIC_VECTOR (4 downto 1);
 SIGNAL a_bcd : STD_LOGIC_VECTOR (4 downto 1);
 SIGNAL c0_bcd : STD_LOGIC;
+
  COMPONENT addsub4g
 PORT(
 sub : IN STD_LOGIC;
@@ -24,6 +25,7 @@ a, b : IN STD_LOGIC_VECTOR (4 downto 1);
 c4 : OUT STD_LOGIC;
 sum : OUT STD_LOGIC_VECTOR (4 downto 1));
 END COMPONENT;
+
 BEGIN
 add_bin: addsub4g
 PORT MAP( sub => sub,
@@ -42,6 +44,8 @@ PORT MAP ( sub => c0_bcd,
 c0_bcd <= '0';
  binary <= c4_bin & sum_bin;
  PROCESS (binary)
+
+
  BEGIN
  IF (sub <= '0') THEN 
  IF (binary >= "01010" and binary <= "10011") THEN
@@ -55,6 +59,8 @@ ELSE
  c4_bcd <= '0';
  a_bcd <= "0000";
  END IF;
+
+ 
  END PROCESS;
  c4 <= c4_bcd;
 END adder;
